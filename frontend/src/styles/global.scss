@@ -1,0 +1,120 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+:root {
+	--hand-line: hsl(0, 0%, 100%);
+}
+
+html {
+	--primary: hsl(266, 100%, 50%);
+	--primary-active: hsl(266, 100%, 65%);
+	--primary-low-contrast: hsla(266, 61%, 64%, 0.16);
+	--primary-low-contrast-2: hsla(266, 61%, 64%, 0.08);
+
+	--text: hsl(266, 27%, 15%);
+	--text-low-contrast: hsla(266, 27%, 15%, 0.8);
+
+	--space: hsl(0, 0%, 100%);
+	--space-transparent: hsla(0, 0%, 100%, 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		--primary: hsl(266, 100%, 80%);
+		--primary-active: hsl(266, 100%, 95%);
+		--primary-low-contrast: hsla(266, 100%, 80%, 0.16);
+		--primary-low-contrast-2: hsla(266, 30%, 62%, 0.08);
+
+		--text: hsl(266, 42%, 94%);
+		--text-low-contrast: hsla(266, 42%, 94%, 0.8);
+
+		--space: hsl(0, 1%, 10%);
+		--space-transparent: hsla(0, 1%, 10%, 0.8);
+	}
+}
+
+body {
+	overflow: overlay;
+}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: var(--primary-low-contrast);
+}
+
+*::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-Thin.ttf');
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-ExtraLight.ttf');
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-Light.ttf');
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-Regular.ttf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-Medium.ttf');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-SemiBold.ttf');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-Bold.ttf');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-ExtraBold.ttf');
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../assets/fonts/Inter/Inter-Black.ttf');
+	font-weight: 900;
+}
+
+body {
+	background: var(--space);
+	color: var(--text);
+	font-family: 'Inter';
+	font-size: 16px;
+}
