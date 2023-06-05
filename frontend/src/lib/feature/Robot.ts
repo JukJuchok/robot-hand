@@ -1,3 +1,5 @@
+import { throttle } from './throttle';
+
 interface RobotConfig {
 	port: SerialPort;
 }
@@ -9,6 +11,8 @@ export class Robot {
 	constructor(config: RobotConfig) {
 		this.port = config.port;
 		this.textEncoder = new TextEncoder();
+
+		this.send = throttle(this.send.bind(this), 100);
 	}
 
 	send(data: number[]) {

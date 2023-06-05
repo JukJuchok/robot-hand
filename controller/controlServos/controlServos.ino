@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
 
-#define NUM_VALUES 17
+#define NUM_VALUES 16
 #define PWM_ADDR 0x40
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(PWM_ADDR);

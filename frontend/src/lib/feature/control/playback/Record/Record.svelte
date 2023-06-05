@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	let current: Record;
+</script>
+
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 	import Range from '$lib/shared/Range.svelte';
@@ -39,7 +43,7 @@
 
 	function onDragEnd() {
 		if (record.playing) {
-			record.play();
+			play();
 		}
 	}
 
@@ -54,13 +58,23 @@
 	onDestroy(() => {
 		record.destroy();
 	});
+
+	function play() {
+		record.play();
+		stopOthers();
+	}
+
+	function stopOthers() {
+		if (current && current !== record) current.pause();
+		current = record;
+	}
 </script>
 
 <div class="record">
 	<ToggleIconButton
 		bind:toggled={playing}
 		buttons={[
-			{ icon: playIcon, onClick: record.play.bind(record) },
+			{ icon: playIcon, onClick: play },
 			{ icon: pauseIcon, onClick: record.pause.bind(record) }
 		]}
 	/>

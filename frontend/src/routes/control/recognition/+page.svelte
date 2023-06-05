@@ -47,7 +47,8 @@
 		if ($robot !== undefined) {
 			if (results.multiHandWorldLandmarks) {
 				if (results.multiHandWorldLandmarks[0]) {
-					const angles = calcAngles(results.multiHandWorldLandmarks[0]);
+					let angles = calcAngles(results.multiHandWorldLandmarks[0]);
+					angles = angles.map((angle) => Math.round(angle));
 
 					$robot.send(angles);
 				}
