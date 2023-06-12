@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let buttons: { icon: string; onClick: () => void }[];
 
-	export let toggled: boolean;
+	export let toggled: boolean = false;
 
 	function toggle() {
 		if (toggled) {

@@ -26,6 +26,8 @@ export class Record {
 	playing = false;
 	shadowPaused = false;
 
+	repeat = false;
+
 	constructor(config: RecordConfigType) {
 		this.data = config.data;
 		this.send = config.send;
@@ -78,9 +80,14 @@ export class Record {
 		this.time += elapsed;
 
 		if (this.time >= this.data[this.data.length - 1].time) {
-			this.time = this.data[this.data.length - 1].time;
-			this.playing = false;
-			this.onPlayingChange(this.playing);
+			if (this.repeat) {
+				this.time = 0;
+				this.requestId = requestAnimationFrame(this.loop);
+			} else {
+				this.time = this.data[this.data.length - 1].time;
+				this.playing = false;
+				this.onPlayingChange(this.playing);
+			}
 		} else {
 			this.requestId = requestAnimationFrame(this.loop);
 		}

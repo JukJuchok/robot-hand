@@ -1,0 +1,17 @@
+html,
+body {
+	height: 100%;
+}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: var(--primary-low-contrast);
+}
+
+*::-webkit-scrollbar-corner {
+	background: transparent;
+}

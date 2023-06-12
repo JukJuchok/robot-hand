@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fly, fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	import Navigation from '$lib/feature/control/Navigation.svelte';
 	import { navigationHeight } from '../../stores/navigationHeightStore';
 	import { browser } from '$app/environment';
@@ -21,8 +21,8 @@
 	{#key pathname}
 		<div
 			style="--navigation-height: {$navigationHeight}px"
-			in:fly={{ delay: 400, duration: 400, y: 32 }}
-			out:fade={{ duration: 400 }}
+			in:scale={{ delay: 400, duration: 400, start: 0.95 }}
+			out:scale={{ delay: 0, duration: 400, start: 0.95  }}
 		>
 			<slot />
 		</div>

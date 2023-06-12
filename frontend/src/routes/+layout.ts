@@ -1,11 +1,6 @@
+import '../styles/colors.scss';
+import '../styles/fonts.scss';
 import '../styles/global.scss';
+import '../styles/scroll.scss';
 
 export const prerender = true;
-
-export const load = ({ url }) => {
-	const { pathname } = url;
-
-	return {
-		pathname
-	};
-};

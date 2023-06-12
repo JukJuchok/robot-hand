@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { robot } from '../stores/robotStore';
 	import { onMount } from 'svelte';
-	import { fly, fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	import { Robot } from '$lib/feature/Robot';
 	import Button from '$lib/feature/Button.svelte';
 
@@ -14,9 +14,8 @@
 				port
 					.open({ baudRate: 9600 })
 					.then(() => {
-						robot.set(new Robot({port}));
+						robot.set(new Robot({ port }));
 						port.ondisconnect = () => {
-							// $robot.destroy();
 							robot.set(undefined);
 							console.warn('oops... disconected');
 							goto(`/`, { replaceState: true });
@@ -35,9 +34,9 @@
 	let animate = false;
 
 	onMount(() => {
-		setTimeout(() => {
+		// setTimeout(() => {
 			animate = true;
-		}, 200);
+		// }, 200);
 	});
 </script>
 
@@ -47,7 +46,7 @@
 
 <div class="page">
 	{#if animate}
-		<div in:fly={{ duration: 400, y: 32 }} out:fade={{ duration: 400 }}>
+		<div transition:scale={{ duration: 400, start: 0.95 }}>
 			<Button icon={usbIcon} on:click={connect}>Connect robot</Button>
 		</div>
 	{/if}

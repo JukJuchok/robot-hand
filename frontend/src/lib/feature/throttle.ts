@@ -1,6 +1,7 @@
-export function throttle<R, A extends any[]>(cb: (...args: A) => R, delay = 1000) {
+export function throttle<R, A extends any[]>(cb: (...args: A) => R, delay: number) {
 	let shouldWait = false;
 	let waitingArgs: any;
+
 	const timeoutFunc = () => {
 		if (waitingArgs == null) {
 			shouldWait = false;

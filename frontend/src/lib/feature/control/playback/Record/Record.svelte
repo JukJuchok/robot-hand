@@ -7,18 +7,16 @@
 	import Range from '$lib/shared/Range.svelte';
 	import { Record, type DataItem } from './Record';
 	import ToggleIconButton from './ToggleIconButton.svelte';
-
 	import playIcon from '../../../../../assets/icons/play.svg?raw';
 	import pauseIcon from '../../../../../assets/icons/pause.svg?raw';
+	import repeatIcon from '../../../../../assets/icons/repeat.svg?raw';
 	import { robot } from '../../../../../stores/robotStore';
 
-	let time = 0;
-
-	let dragging: boolean;
-
-	let playing = false;
-
 	export let data: DataItem[];
+
+	let time = 0;
+	let dragging: boolean;
+	let playing = false;
 
 	const record = new Record({
 		data,
@@ -35,10 +33,14 @@
 		}
 	});
 
-	$: {
-		if (dragging) {
-			record.setTime(time);
-		}
+	function stopOthers() {
+		if (current && current !== record) current.pause();
+		current = record;
+	}
+
+	function play() {
+		record.play();
+		stopOthers();
 	}
 
 	function onDragEnd() {
@@ -55,18 +57,18 @@
 		return formatted;
 	}
 
+	function toggleRepeat() {
+		record.repeat = !record.repeat;
+	}
+
 	onDestroy(() => {
 		record.destroy();
 	});
 
-	function play() {
-		record.play();
-		stopOthers();
-	}
-
-	function stopOthers() {
-		if (current && current !== record) current.pause();
-		current = record;
+	$: {
+		if (dragging) {
+			record.setTime(time);
+		}
 	}
 </script>
 
@@ -85,6 +87,10 @@
 	<div class="timeline">
 		<Range bind:value={time} min={0} max={data[data.length - 1].time} bind:dragging {onDragEnd} />
 	</div>
+
+	<button on:click={toggleRepeat} class:active={record.repeat}>
+		{@html repeatIcon}
+	</button>
 </div>
 
 <style lang="scss">
@@ -106,6 +112,32 @@
 
 		.timeline {
 			width: 256px;
+		}
+
+		button {
+			width: 32px;
+			height: 32px;
+
+			cursor: pointer;
+			border: none;
+			background: none;
+
+			:global(svg) {
+				width: 32px;
+				height: 32px;
+				fill: var(--text);
+				transition: fill 0.4s;
+			}
+			&.active {
+				:global(svg) {
+					width: 32px;
+					height: 32px;
+					fill: var(--primary);
+				}
+			}
+			&:focus {
+				outline: none;
+			}
 		}
 	}
 </style>
