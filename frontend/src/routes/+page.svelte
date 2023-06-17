@@ -2,10 +2,12 @@
 	import usbIcon from '../assets/icons/usb.svg?raw';
 	import { goto } from '$app/navigation';
 	import { robot } from '../stores/robotStore';
-	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
 	import { Robot } from '$lib/feature/Robot';
 	import Button from '$lib/feature/Button.svelte';
+	import Mount from '$lib/shared/Mount.svelte';
+
+	let foo = 0;
 
 	function connect() {
 		navigator.serial
@@ -30,14 +32,6 @@
 				console.warn(e.message);
 			});
 	}
-
-	let animate = false;
-
-	onMount(() => {
-		// setTimeout(() => {
-			animate = true;
-		// }, 200);
-	});
 </script>
 
 <svelte:head>
@@ -45,24 +39,23 @@
 </svelte:head>
 
 <div class="page">
-	{#if animate}
-		<div transition:scale={{ duration: 400, start: 0.95 }}>
+	<Mount>
+		<div transition:scale={{ duration: 800, start: 0.95 }}>
 			<Button icon={usbIcon} on:click={connect}>Connect robot</Button>
 		</div>
-	{/if}
+	</Mount>
 </div>
 
 <style lang="scss">
 	.page {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		padding: 32px 64px;
 		width: 100%;
 		min-width: min-content;
 		height: 100%;
 		min-height: 100%;
-
-		padding: 32px 64px;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 </style>

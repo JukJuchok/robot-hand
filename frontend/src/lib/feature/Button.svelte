@@ -8,26 +8,27 @@
 </button>
 
 <style lang="scss">
+	@import '../../styles/text.scss';
+
 	button {
-		cursor: pointer;
-		white-space: nowrap;
-		border: none;
-		padding: 16px 32px 16px 24px;
-
-		background: var(--primary);
-		border-radius: 32px;
-
-		font-weight: 700;
-		font-size: 16px;
-		line-height: 19px;
+		@include body-bold();
 
 		display: flex;
 		align-items: center;
 		gap: 16px;
 
-		color: var(--space);
+		transition: background-color 0.8s;
 
-		transition: background-color 0.4s;
+		cursor: pointer;
+
+		border: none;
+		border-radius: 32px;
+
+		background: var(--primary);
+
+		padding: 16px 32px 16px 24px;
+		color: var(--space);
+		white-space: nowrap;
 
 		&:hover {
 			background: var(--primary-active);
@@ -38,9 +39,9 @@
 		}
 
 		:global(svg) {
+			fill: var(--space);
 			width: 32px;
 			height: 32px;
-			fill: var(--space);
 		}
 	}
 </style>

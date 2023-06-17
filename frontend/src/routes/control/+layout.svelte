@@ -21,8 +21,7 @@
 	{#key pathname}
 		<div
 			style="--navigation-height: {$navigationHeight}px"
-			in:scale={{ delay: 400, duration: 400, start: 0.95 }}
-			out:scale={{ delay: 0, duration: 400, start: 0.95  }}
+			transition:scale={{ delay: 0, duration: 800, start: 0.95 }}
 		>
 			<slot />
 		</div>
@@ -34,17 +33,17 @@
 <style lang="scss">
 	.page {
 		width: 100%;
-		height: 100%;
 		min-width: min-content;
+		height: 100%;
 
 		div {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 			padding: 64px;
 			padding-bottom: calc(var(--navigation-height) + 64px);
 			min-height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: column;
 		}
 	}
 </style>

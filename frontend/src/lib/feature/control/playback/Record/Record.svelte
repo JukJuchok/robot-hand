@@ -94,20 +94,23 @@
 </div>
 
 <style lang="scss">
+	@import '../../../../../styles/text.scss';
 	.record {
 		display: flex;
 		align-items: center;
-		padding: 16px 24px;
 		gap: 16px;
-
-		background: var(--primary-low-contrast-2);
 		border-radius: 32px;
 
+		background: var(--primary-low-contrast-2);
+		padding: 16px 24px;
+
 		.time {
-			white-space: nowrap;
-			width: 84px;
 			display: flex;
 			justify-content: center;
+			width: 84px;
+			white-space: nowrap;
+
+			@include body();
 		}
 
 		.timeline {
@@ -115,24 +118,23 @@
 		}
 
 		button {
-			width: 32px;
-			height: 32px;
-
 			cursor: pointer;
 			border: none;
 			background: none;
+			width: 32px;
+			height: 32px;
 
 			:global(svg) {
+				fill: var(--text);
+				transition: fill 0.8s;
 				width: 32px;
 				height: 32px;
-				fill: var(--text);
-				transition: fill 0.4s;
 			}
 			&.active {
 				:global(svg) {
+					fill: var(--primary);
 					width: 32px;
 					height: 32px;
-					fill: var(--primary);
 				}
 			}
 			&:focus {

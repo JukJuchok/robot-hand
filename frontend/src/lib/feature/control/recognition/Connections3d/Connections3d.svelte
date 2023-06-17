@@ -85,8 +85,6 @@
 						}));
 					}
 
-					
-
 					prevLandmarks = landmarks;
 
 					const rotatedLandmarks = rotateY(landmarks, angle);
@@ -119,12 +117,12 @@
 
 <style lang="scss">
 	canvas {
-		background: var(--primary-low-contrast-2);
 		display: block;
 		border-radius: 16px;
-		height: 100%;
+		background: var(--primary-low-contrast-2);
 		width: 100%;
-		max-height: var(--video-width);
 		max-width: var(--video-height);
+		height: 100%;
+		max-height: var(--video-width);
 	}
 </style>

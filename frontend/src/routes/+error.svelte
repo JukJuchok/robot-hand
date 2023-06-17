@@ -10,41 +10,40 @@
 	<div class="content">
 		<h1>
 			{$page.error?.message}
-        </h1>
+		</h1>
 		<a href="/">Go home</a>
 	</div>
 </div>
 
 <style lang="scss">
+	@import '../styles/text.scss';
 	.page {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		padding: 32px 64px;
 		width: 100%;
 		min-width: min-content;
 		height: 100%;
 		min-height: 100%;
 
-		padding: 32px 64px;
-
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-
 		.content {
 			display: flex;
 			flex-direction: column;
 			gap: 16px;
+
+			h1 {
+				@include header();
+			}
 			a {
-				white-space: nowrap;
-				font-family: 'Inter';
-				font-weight: 400;
-				font-size: 16px;
-				line-height: 19px;
+				@include body();
 
+				transition: color 0.8s;
 				color: var(--primary);
-
 				text-decoration: none;
-
-				transition: color 0.4s;
+				white-space: nowrap;
 
 				&:hover {
 					color: var(--primary-active);

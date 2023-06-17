@@ -77,7 +77,8 @@
 <svelte:window on:pointermove={moveThumb} on:pointerup={stopDrag} on:pointerleave={stopDrag} />
 
 <div class="input" class:active={dragging} bind:this={input} on:pointerdown={jumpTo}>
-	<div class="track" style="--value: {(value / (max - min)) * 100}%" />
+	<div class="track" />
+	<div class="fill" style="--width: {(value / (max - min)) * 100}%" />
 	<div
 		class="thumb"
 		style="transform: translateX({map(value, min, max, 0, inputWidth - thumbWidth)}px);"
@@ -89,40 +90,39 @@
 <style lang="scss">
 	.input {
 		position: relative;
+		width: 100%;
 		touch-action: none;
 		user-select: none;
-		width: 100%;
 
-		.track {
+		.track,
+		.fill {
 			position: absolute;
 			top: 6px;
-			height: 4px;
-			width: 100%;
 			border-radius: 2px;
-			background: linear-gradient(
-				90deg,
-				var(--primary) var(--value),
-				var(--primary-low-contrast) var(--value)
-			);
-			transition: background-color 0.4s;
+			width: 100%;
+			height: 4px;
+		}
+		.track {
+			background: var(--primary-low-contrast);
+		}
+		.fill {
+			transition: background-color 0.8s;
+			background: var(--primary);
+			width: var(--width);
 		}
 
 		.thumb {
-			height: 16px;
-			width: 16px;
+			transition: background-color 0.8s;
 			border-radius: 8px;
 			background: var(--primary);
-			transition: background-color 0.4s;
+			width: 16px;
+			height: 16px;
 		}
 
 		&:hover,
 		&.active {
-			.track {
-				background: linear-gradient(
-					90deg,
-					var(--primary-active) var(--value),
-					var(--primary-low-contrast) var(--value)
-				);
+			.fill {
+				background: var(--primary-active);
 			}
 
 			.thumb {

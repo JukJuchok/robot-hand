@@ -1,5 +1,7 @@
 <script>
 	import Record from '$lib/feature/control/playback/Record/Record.svelte';
+	import Mount from '$lib/shared/Mount.svelte';
+	import { scale } from 'svelte/transition';
 
 	const records = [
 		{
@@ -50,15 +52,25 @@
 </svelte:head>
 
 <div class="records-list">
-	{#each records as record}
-		<div class="record">
-			<span>{record.title}</span>
-			<Record data={record.data} />
-		</div>
+	{#each records as record, index}
+		<Mount>
+			<div
+				class="record"
+				in:scale={{
+					delay: 800 + index * 100,
+					duration: 400,
+					start: 0.95
+				}}
+			>
+				<span>{record.title}</span>
+				<Record data={record.data} />
+			</div>
+		</Mount>
 	{/each}
 </div>
 
 <style lang="scss">
+	@import '../../../styles/text.scss';
 	.records-list {
 		display: flex;
 		flex-direction: column;
@@ -70,8 +82,7 @@
 			gap: 12px;
 
 			span {
-				font-weight: 500;
-				padding: 0 16px;
+				@include body-medium();
 			}
 		}
 	}

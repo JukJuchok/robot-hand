@@ -42,43 +42,38 @@
 </div>
 
 <style lang="scss">
+	@import '../../../styles/text.scss';
 	.navigation {
-		background: var(--space-transparent);
-		border-top: 2px solid var(--primary-low-contrast-2);
-		backdrop-filter: blur(8px);
+		display: flex;
 
 		position: fixed;
 		bottom: 0;
-		z-index: 1;
-
-		width: 100%;
-		padding: 32px;
-
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
 		column-gap: 64px;
 		row-gap: 32px;
+		flex-wrap: wrap;
+		justify-content: center;
+		z-index: 1;
+		backdrop-filter: blur(8px);
+		border-top: 2px solid var(--primary-low-contrast-2);
+		background: var(--space-transparent);
+		padding: 32px;
 
 		width: 100%;
 
 		a {
-			white-space: nowrap;
-			font-family: 'Inter';
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 19px;
+			@include body();
+			animation-duration: 0.8s;
+			animation-delay: calc(var(--index) * 0.1s);
+			animation-fill-mode: both;
+
+			animation-name: scale;
+
+			transition: color 0.8s;
 
 			color: var(--text);
 
 			text-decoration: none;
-
-			transition: color 0.4s;
-
-			animation-name: fly;
-			animation-duration: 0.4s;
-			animation-fill-mode: both;
-			animation-delay: calc(var(--index) * 0.1s);
+			white-space: nowrap;
 
 			&:hover {
 				color: var(--primary);
@@ -89,20 +84,20 @@
 			}
 
 			&.active {
-				color: var(--primary);
 				cursor: default;
+				color: var(--primary);
 			}
 		}
 	}
 
-	@keyframes fly {
+	@keyframes scale {
 		0% {
+			transform: scale(0.95);
 			opacity: 0;
-			transform: translateY(32px);
 		}
 		100% {
+			transform: scale(1);
 			opacity: 1;
-			transform: translateY(0px);
 		}
 	}
 </style>

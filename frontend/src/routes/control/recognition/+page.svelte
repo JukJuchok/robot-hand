@@ -6,6 +6,8 @@
 	import { calcAngles } from '$lib/feature/control/recognition/calcAngles';
 	import Connections2d from '$lib/feature/control/recognition/Connections2d.svelte';
 	import Connections3d from '$lib/feature/control/recognition/Connections3d/Connections3d.svelte';
+	import Mount from '$lib/shared/Mount.svelte';
+	import { scale } from 'svelte/transition';
 
 	let hands: Hands;
 	let video: HTMLVideoElement;
@@ -97,8 +99,14 @@
 </svelte:head>
 
 <div>
-	<Connections2d {videoWidth} {videoHeight} {results} />
-	<Connections3d {videoWidth} {videoHeight} {results} />
+	<Mount>
+		<div in:scale={{ delay: 1000, duration: 800, start: 0.95 }}>
+			<Connections2d {videoWidth} {videoHeight} {results} />
+		</div>
+		<div in:scale={{ delay: 1000 + 100, duration: 800, start: 0.95 }}>
+			<Connections3d {videoWidth} {videoHeight} {results} />
+		</div>
+	</Mount>
 </div>
 
 <!-- svelte-ignore a11y-media-has-caption -->

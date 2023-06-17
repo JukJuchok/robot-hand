@@ -12,7 +12,10 @@
 </div>
 
 <style lang="scss">
+	@import '../../../../styles/text.scss';
+
 	.input-container {
+		@include body();
 		display: flex;
 		flex-direction: column;
 		gap: 16px;

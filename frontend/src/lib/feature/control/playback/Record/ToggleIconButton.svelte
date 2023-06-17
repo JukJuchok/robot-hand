@@ -23,17 +23,16 @@
 
 <style lang="scss">
 	button {
-		width: 32px;
-		height: 32px;
-
 		cursor: pointer;
 		border: none;
 		background: none;
+		width: 32px;
+		height: 32px;
 
 		:global(svg) {
+			fill: var(--text);
 			width: 32px;
 			height: 32px;
-			fill: var(--text);
 		}
 
 		&:focus {
