@@ -7,8 +7,6 @@
 	import Button from '$lib/feature/Button.svelte';
 	import Mount from '$lib/shared/Mount.svelte';
 
-	let foo = 0;
-
 	function connect() {
 		navigator.serial
 			.requestPort({ filters: [] })

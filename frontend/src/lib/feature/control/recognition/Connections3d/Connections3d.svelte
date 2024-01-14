@@ -26,7 +26,7 @@
 	let angle = 0;
 	let dragging = false;
 
-	function startDrag(e: MouseEvent) {
+	function startDrag() {
 		dragging = true;
 	}
 
